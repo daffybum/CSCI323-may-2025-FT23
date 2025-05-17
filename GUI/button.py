@@ -1,9 +1,3 @@
-"""
-  button.py             :   This file contains the class for implementing a pygame button.
-  File created by       :   Shashank Goyal
-  Last commit done by   :   Shashank Goyal
-  Last commit date      :   3rd September
-"""
 
 # import respective object type for type hint specification
 from typing import Tuple
