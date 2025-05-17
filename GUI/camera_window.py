@@ -1,9 +1,3 @@
-"""
-  camera_windows.py     :   This file contains the class for implementing a camera screen in pygame.
-  File created by       :   Shashank Goyal
-  Last commit done by   :   Shashank Goyal
-  Last commit date      :   3rd September
-"""
 
 # import environment variable from os
 import os
