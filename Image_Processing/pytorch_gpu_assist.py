@@ -1,9 +1,4 @@
-"""
-  pytorch_gpu_assist.py :   This file contains helper functions to implement training on GPUs.
-  File created by       :   Shashank Goyal
-  Last commit done by   :   Shashank Goyal
-  Last commit date      :   3rd September
-"""
+
 
 # import the pytorch module
 import torch

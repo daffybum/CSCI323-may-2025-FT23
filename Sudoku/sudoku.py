@@ -1,9 +1,4 @@
-"""
-  sudoku.py             :   This file contains class to solve Sudoku Puzzle.
-  File created by       :   Shashank Goyal
-  Last commit done by   :   Shashank Goyal
-  Last commit date      :   3rd September
-"""
+
 
 # method for cartesian product
 from itertools import product

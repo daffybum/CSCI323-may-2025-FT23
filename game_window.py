@@ -2,7 +2,7 @@ import os
 import tkinter.messagebox
 from contextlib import suppress
 from random import choice
-from time import sleep
+from time import time
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 from typing import List, Tuple
@@ -137,12 +137,17 @@ class SudokuGUI:
 
         if self.button_solve.clicked(event):
             try:
+                
                 edited_matrix = self.matrix.copy()
+                start = time()
                 sudoku_solver = Sudoku(edited_matrix, box_row=self.BOX_ROWS, box_col=self.BOX_COLS)
                 solution_list = sudoku_solver.get_solution()
                 if not solution_list:
                     raise ValueError("No solution found.")
                 solved_matrix = solution_list[0]
+                elapsed_time = round(time() - start, 4)
+                
+                self.show_popup(f"Solved in {elapsed_time} seconds")
 
                 # Find which cells were filled by solver
                 solver_filled = [(i, j) for i in range(self.NUM_ROWS)
@@ -248,3 +253,20 @@ class SudokuGUI:
         np.save('last_loaded_dim.npy', np.array([self.BOX_ROWS, self.BOX_COLS]))
         pygame.quit()
         quit()
+    def show_popup(self, message, width=300, height=100, duration=2):
+        font = pygame.font.SysFont("arial", 24)
+        popup_surface = pygame.Surface((width, height))
+        popup_surface.fill((240, 240, 240))  # Light gray background
+        pygame.draw.rect(popup_surface, (0, 0, 0), popup_surface.get_rect(), 2)
+
+        text_surf = font.render(message, True, (0, 0, 0))
+        text_rect = text_surf.get_rect(center=(width // 2, height // 2))
+        popup_surface.blit(text_surf, text_rect)
+
+        # Center popup on window
+        window_rect = self.window.get_rect()
+        popup_rect = popup_surface.get_rect(center=window_rect.center)
+
+        self.window.blit(popup_surface, popup_rect)
+        pygame.display.update()
+        pygame.time.delay(int(duration * 500))  # Pause for the specified duration
